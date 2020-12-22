@@ -2,6 +2,8 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using MusicSpotify.View;
+
 namespace MusicSpotify
 {
     public partial class App : Application
@@ -10,7 +12,7 @@ namespace MusicSpotify
         {
             InitializeComponent();
 
-            //MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
