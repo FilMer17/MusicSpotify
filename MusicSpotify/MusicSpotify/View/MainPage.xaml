@@ -4,31 +4,32 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:model="clr-namespace:MusicSpotify.Model"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:MusicSpotify"
     xmlns:viewmodel="clr-namespace:MusicSpotify.ViewModel"
-    Title="Music with Spotify"
-    x:DataType="viewmodel:AlbumsViewModel">
+    x:DataType="viewmodel:AlbumsViewModel"
+    mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
         <viewmodel:AlbumsViewModel />
     </d:ContentPage.BindingContext>
 
+
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
             <Label 
-                Text="Music with Spotify"
+                Text="{Binding Title}"
                 HorizontalOptions="StartAndExpand"
                 VerticalOptions="CenterAndExpand"
                 FontAttributes="Bold"
                 FontSize="Medium"
                 TextColor="White" />
 
-            <Label 
-                Text="     "
-                BackgroundColor="Green"
-                FontSize="Medium"
+            <ActivityIndicator 
                 HorizontalOptions="End"
                 VerticalOptions="CenterAndExpand"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
                 Margin="0, 0, 7, 0"/>
         </StackLayout>
     </NavigationPage.TitleView>
@@ -44,6 +45,38 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
+        <ListView
+            ItemsSource="{Binding Albums}"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            ItemSelected="ListVeiw_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame
+                            InputTransparent="True"
+                            Margin="10,5" Padding="0"
+                            BackgroundColor="White" CornerRadius="10"
+                            HeightRequest="125" IsClippedToBounds="True"
+                            Visual="Material">
+                            <Grid Padding="0" ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout
+                                    Grid.Column="1" Padding="10"
+                                    VerticalOptions="Center">
+                                    <Label FontSize="Large" Text="{Binding Name}" />
+                                    <Label FontSize="Medium" Text="{Binding Location}" />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
         <Entry 
             Grid.Row="0"
             Grid.Column="0"
@@ -56,17 +89,9 @@
             Grid.Column="1"
             HorizontalOptions="End"
             Margin="5"
-            Text="Vyhledat" />
-        
-        <RefreshView
-            IsEnabled="True"
-            Grid.Row="2"
-            Grid.ColumnSpan="2"
-            Margin="5">
-            <CollectionView SelectionMode="Single">
-                <!--inserts albums here-->
-            </CollectionView>
-        </RefreshView>
+            Text="Vyhledat"
+            IsEnabled="{Binding IsNotBusy}"
+            Command="{Binding GetAlbumsCommand}"/>
 
     </Grid>
         
