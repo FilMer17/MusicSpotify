@@ -10,9 +10,9 @@
     x:DataType="viewmodel:AlbumsViewModel"
     mc:Ignorable="d">
 
-    <d:ContentPage.BindingContext>
+    <ContentPage.BindingContext>
         <viewmodel:AlbumsViewModel />
-    </d:ContentPage.BindingContext>
+    </ContentPage.BindingContext>
 
 
     <NavigationPage.TitleView>
