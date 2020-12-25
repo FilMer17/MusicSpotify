@@ -24,10 +24,7 @@ namespace MusicSpotify.ViewModel
         public AlbumsViewModel()
         {
             Title = "Music with Spotify";
-            Albums = new ObservableCollection<Album>
-            {
-                new Album { Name = "name", Location = "location" }
-            };
+            Albums = new ObservableCollection<Album>();
             GetAlbumsCommand = new Command(async () => await GetAlbumsAsync());
         }
 

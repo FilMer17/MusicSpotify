@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:MusicSpotify"
     xmlns:model="clr-namespace:MusicSpotify.Model"
     xmlns:viewmodel="clr-namespace:MusicSpotify.ViewModel"
-    x:DataType="viewmodel:AlbumsViewModel"
+    x:DataType="viewmodel:AlbumDetailViewModel"
     mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
