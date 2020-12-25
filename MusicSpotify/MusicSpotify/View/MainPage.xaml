@@ -85,12 +85,21 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Entry 
+        <!--<Entry 
             Grid.Row="0"
             Grid.Column="0"
             HorizontalOptions="FillAndExpand"
             Margin="7"
-            Placeholder="Napiš umělce"/>
+            Placeholder="Napiš umělce"/>-->
+
+        <Picker 
+            Title="Vyber umělce"
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalOptions="FillAndExpand"
+            Margin="7"
+            ItemsSource="{Binding Authors}"
+            SelectedItem="{Binding AuthorSelected}"/>
 
         <Button
             Grid.Row="0"

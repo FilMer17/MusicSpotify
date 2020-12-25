@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 
 using MusicSpotify.Model;
+using MusicSpotify.Service;
 
 namespace MusicSpotify.ViewModel
 {
@@ -19,12 +20,15 @@ namespace MusicSpotify.ViewModel
         HttpClient Client => httpClient ?? (httpClient = new HttpClient());
 
         public ObservableCollection<Album> Albums { get; }
+        public List<string> Authors { get; }
+        public string AuthorSelected { get; set; }
         public Command GetAlbumsCommand { get; }
 
         public AlbumsViewModel()
         {
             Title = "Music with Spotify";
             Albums = new ObservableCollection<Album>();
+            Authors = new List<string> { "Kygo", "Ed Sheeran", "Tylor Swift" };
             GetAlbumsCommand = new Command(async () => await GetAlbumsAsync());
         }
 
@@ -52,7 +56,6 @@ namespace MusicSpotify.ViewModel
             {
                 Debug.WriteLine($"Error to get albums: {ex.Message}");
                 await Application.Current.MainPage.DisplayAlert("Error with albums! ", ex.Message, "Dobrá");
-                throw;
             }
             finally
             {
