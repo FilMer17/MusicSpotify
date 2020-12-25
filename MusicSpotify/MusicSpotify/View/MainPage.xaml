@@ -6,13 +6,14 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:MusicSpotify"
+    xmlns:model="clr-namespace:MusicSpotify.Model"
     xmlns:viewmodel="clr-namespace:MusicSpotify.ViewModel"
     x:DataType="viewmodel:AlbumsViewModel"
     mc:Ignorable="d">
 
-    <ContentPage.BindingContext>
+    <d:ContentPage.BindingContext>
         <viewmodel:AlbumsViewModel />
-    </ContentPage.BindingContext>
+    </d:ContentPage.BindingContext>
 
 
     <NavigationPage.TitleView>
@@ -49,9 +50,11 @@
             ItemsSource="{Binding Albums}"
             Grid.Row="1"
             Grid.ColumnSpan="2"
-            ItemSelected="ListVeiw_ItemSelected">
+            ItemSelected="ListVeiw_ItemSelected"
+            SeparatorVisibility="None"
+            HasUnevenRows="True">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="model:Album">
                     <ViewCell>
                         <Frame
                             InputTransparent="True"
@@ -64,6 +67,11 @@
                                     <ColumnDefinition Width="125" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
+                                <Frame 
+                                    InputTransparent="True" Padding="0" CornerRadius="10"
+                                    IsClippedToBounds="True" BackgroundColor="White">
+                                    <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                </Frame>
                                 <StackLayout
                                     Grid.Column="1" Padding="10"
                                     VerticalOptions="Center">

@@ -25,6 +25,11 @@ namespace MusicSpotify.ViewModel
             }
         }
 
+        public AlbumDetailViewModel()
+        {
+
+        }
+
         public AlbumDetailViewModel(Album album)
         {
             Album = album;

@@ -12,6 +12,9 @@ namespace MusicSpotify.Model
 
         [JsonProperty("Location")]
         public string Location { get; set; }
+        
+        [JsonProperty("Image")]
+        public Uri Image { get; set; }
 
         public static Album[] FromJson(string json) =>
             JsonConvert.DeserializeObject<Album[]>(json, Converter.Settings);

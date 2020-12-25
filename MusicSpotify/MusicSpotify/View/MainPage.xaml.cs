@@ -29,5 +29,17 @@ namespace MusicSpotify.View
 
             ((ListView)sender).SelectedItem = null;
         }
+
+        async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!(e.CurrentSelection is Album album))
+            {
+                return;
+            }
+
+            await Navigation.PushAsync(new DetailPage(album));
+
+            ((ListView)sender).SelectedItem = null;
+        }
     }
 }
