@@ -98,7 +98,7 @@
             Grid.Column="0"
             HorizontalOptions="FillAndExpand"
             Margin="7"
-            ItemsSource="{Binding Authors}"
+            ItemsSource="{Binding AuthorsNames}"
             SelectedItem="{Binding AuthorSelected}"/>
 
         <Button

@@ -20,7 +20,8 @@ namespace MusicSpotify.ViewModel
         HttpClient Client => httpClient ?? (httpClient = new HttpClient());
 
         public ObservableCollection<Album> Albums { get; }
-        public List<string> Authors { get; }
+        public Dictionary<string, string> Authors { get; }
+        public List<string> AuthorsNames { get; }
         public string AuthorSelected { get; set; }
         public Command GetAlbumsCommand { get; }
 
@@ -28,39 +29,45 @@ namespace MusicSpotify.ViewModel
         {
             Title = "Music with Spotify";
             Albums = new ObservableCollection<Album>();
-            Authors = new List<string> { "Kygo", "Ed Sheeran", "Tylor Swift" };
-            GetAlbumsCommand = new Command(async () => await GetAlbumsAsync());
+            Authors = new Dictionary<string, string>
+            {
+                { "Kygo", "id" },
+                { "Ed Sheeran", "id" },
+                { "Tylor Swift", "id" }
+            };
+            AuthorsNames = Authors.Keys.ToList();
+            GetAlbumsCommand = new Command(async () => await APIConnectionService.GetAlbumsAsync());
         }
 
-        async Task GetAlbumsAsync()
-        {
-            if (IsBusy)
-            {
-                return;
-            }
+        //async Task GetAlbumsAsync()
+        //{
+        //    if (IsBusy)
+        //    {
+        //        return;
+        //    }
 
-            try
-            {
-                IsBusy = true;
+        //    try
+        //    {
+        //        IsBusy = true;
 
-                var json = await Client.GetStringAsync("https://montemagno.com/monkeys.json");
-                var albums = Album.FromJson(json);
+        //        var json = await Client.GetStringAsync("https://montemagno.com/monkeys.json");
+        //        var albums = Album.FromJson(json);
 
-                Albums.Clear();
-                foreach (var album in albums)
-                {
-                    Albums.Add(album);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Error to get albums: {ex.Message}");
-                await Application.Current.MainPage.DisplayAlert("Error with albums! ", ex.Message, "Dobrá");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
+        //        Albums.Clear();
+        //        foreach (var album in albums)
+        //        {
+        //            Albums.Add(album);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine($"Error to get albums: {ex.Message}");
+        //        await Application.Current.MainPage.DisplayAlert("Error with albums! ", ex.Message, "Dobrá");
+        //    }
+        //    finally
+        //    {
+        //        IsBusy = false;
+        //    }
+        //}
     }
 }
