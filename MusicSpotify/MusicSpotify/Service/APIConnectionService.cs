@@ -8,8 +8,8 @@ namespace MusicSpotify.Service
 {
     public class APIConnectionService
     {
-        private static readonly string clientId = Environment.GetEnvironmentVariable("CLIENT_ID");
-        private static readonly string clientSecret = Environment.GetEnvironmentVariable("CLIENT_SECRET");
+        private static readonly string clientId = Environment.GetEnvironmentVariable("e260c04c8d644b239d8ffc02b3b90a3a");
+        private static readonly string clientSecret = Environment.GetEnvironmentVariable("e57e3550d7074d57ae8d2a5698a41c69");
 
         public static async Task GetAlbumsAsync()
         {
@@ -18,7 +18,7 @@ namespace MusicSpotify.Service
             var response = await new OAuthClient(config).RequestToken(request);
             var spotify = new SpotifyClient(config.WithToken(response.AccessToken));
 
-
+            var albums = await spotify.Artists.GetAlbums("23fqKkggKUBHNkbKtXEls4");
         }
     }
 
