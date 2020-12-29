@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:MusicSpotify"
     xmlns:model="clr-namespace:MusicSpotify.Model"
     xmlns:viewmodel="clr-namespace:MusicSpotify.ViewModel"
+    xmlns:spotify="clr-namespace:SpotifyAPI.Web;assembly=SpotifyAPI.Web"
     x:DataType="viewmodel:AlbumDetailViewModel"
     mc:Ignorable="d">
 
@@ -15,7 +16,7 @@
         <viewmodel:AlbumDetailViewModel />
     </d:ContentPage.BindingContext>
 
-    <ScrollView>
+    <!--<ScrollView>-->
         <StackLayout>
             <Grid>
                 <Grid.RowDefinitions>
@@ -27,19 +28,19 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <BoxView
                     Grid.ColumnSpan="3"
-                    BackgroundColor="Green"
+                    BackgroundColor="Black"
                     HeightRequest="100"
                     HorizontalOptions="FillAndExpand" />
-                
+
                 <StackLayout
                     Grid.RowSpan="2"
                     Grid.Column="1"
                     Margin="0, 50, 0, 0">
                     <Frame
-                        InputTransparent="True" Padding="0" CornerRadius="100"
+                        InputTransparent="True" Padding="0" CornerRadius="10"
                         IsClippedToBounds="True" BackgroundColor="White"
                         HorizontalOptions="Center">
                         <Image
@@ -50,13 +51,13 @@
                             VerticalOptions="Center" />
                     </Frame>
                 </StackLayout>
-                
+
                 <Label
                     Grid.Row="1"
                     Margin="10"
                     FontSize="Micro"
                     HorizontalOptions="Center"
-                    Text="{Binding Album.Location}" />
+                    Text="{Binding Album.ReleaseDate}" />
 
                 <Label
                     Grid.Row="1"
@@ -64,7 +65,7 @@
                     Margin="10"
                     FontSize="Micro"
                     HorizontalOptions="Center"
-                    Text="100 000" />
+                    Text="{Binding Album.AlbumId}" />
             </Grid>
 
             <Label
@@ -74,6 +75,44 @@
                 Text="{Binding Album.Name}" />
 
             <BoxView HeightRequest="1" Color="#DDDDDD" />
+
+            <ListView
+                ItemsSource="{Binding Album.AlbumSongs}"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                SeparatorVisibility="None"
+                HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="spotify:SimpleTrack">
+                        <ViewCell>
+                            <Frame
+                            InputTransparent="True"
+                            Margin="10,5" Padding="0"
+                            BackgroundColor="White" CornerRadius="10"
+                            HeightRequest="100" IsClippedToBounds="True"
+                            Visual="Material">
+                                <Grid Padding="0" ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="75" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Frame 
+                                    InputTransparent="True" Padding="0" CornerRadius="10"
+                                    IsClippedToBounds="True" BackgroundColor="White">
+                                        <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                    </Frame>-->
+                                    <!--<StackLayout
+                                        Grid.Column="1" Padding="10"
+                                        VerticalOptions="Center">-->
+                                        <Label Grid.Column="0" VerticalOptions="Center" HorizontalTextAlignment="Center" FontSize="Medium" Text="{Binding TrackNumber}" />
+                                        <Label Grid.Column="1" VerticalOptions="Center" FontSize="Large" Text="{Binding Name}" />
+                                    <!--</StackLayout>-->
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 </ContentPage>

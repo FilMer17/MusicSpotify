@@ -76,7 +76,7 @@
                                     Grid.Column="1" Padding="10"
                                     VerticalOptions="Center">
                                     <Label FontSize="Large" Text="{Binding Name}" />
-                                    <Label FontSize="Medium" Text="{Binding Location}" />
+                                    <Label FontSize="Medium" Text="{Binding ReleaseDate}" />
                                 </StackLayout>
                             </Grid>
                         </Frame>

@@ -5,6 +5,8 @@ using Xamarin.Forms;
 
 using MusicSpotify.Model;
 
+using SpotifyAPI.Web;
+
 namespace MusicSpotify.ViewModel
 {
     public class AlbumDetailViewModel : BaseViewModel
@@ -24,6 +26,7 @@ namespace MusicSpotify.ViewModel
                 OnPropertyChanged();
             }
         }
+        SimpleTrack AlbumSimpleTrack = new SimpleTrack();
 
         public AlbumDetailViewModel()
         {
