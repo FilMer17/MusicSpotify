@@ -34,6 +34,7 @@ namespace MusicSpotify.ViewModel
         public AlbumsViewModel()
         {
             Title = "Music with Spotify";
+            AuthorSelected = "Kygo";
             Albums = new ObservableCollection<Album>();
             Authors = new Dictionary<string, string>
             {

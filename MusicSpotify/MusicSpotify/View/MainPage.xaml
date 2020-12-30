@@ -15,7 +15,6 @@
         <viewmodel:AlbumsViewModel />
     </d:ContentPage.BindingContext>
 
-
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
             <Label 
@@ -24,14 +23,20 @@
                 VerticalOptions="CenterAndExpand"
                 FontAttributes="Bold"
                 FontSize="Medium"
-                TextColor="White" />
+                TextColor="Black" />
 
             <ActivityIndicator 
-                HorizontalOptions="End"
                 VerticalOptions="CenterAndExpand"
                 IsRunning="{Binding IsBusy}"
                 IsVisible="{Binding IsBusy}"
                 Margin="0, 0, 7, 0"/>
+
+            <Frame
+                InputTransparent="True" IsClippedToBounds="True" 
+                Padding="0" CornerRadius="10" Margin="0, 0, 7, 0"
+                BackgroundColor="Transparent">
+                <Image WidthRequest="50" HeightRequest="50" Source="{Binding WifiConnection}"/>
+            </Frame>
         </StackLayout>
     </NavigationPage.TitleView>
 
@@ -102,6 +107,7 @@
             SelectedItem="{Binding AuthorSelected}"/>
 
         <Button
+            Style="{StaticResource AppButton}"
             Grid.Row="0"
             Grid.Column="1"
             HorizontalOptions="End"

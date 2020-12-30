@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Timers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace MusicSpotify.ViewModel
 {
@@ -10,7 +11,30 @@ namespace MusicSpotify.ViewModel
     {
         public BaseViewModel()
         {
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                WifiConnection = "Wifi.png";
+            }
+            else
+            {
+                WifiConnection = "NoWifi.png";
+            }
+            var timerWifi = new Timer(10000);
+            timerWifi.AutoReset = true;
+            timerWifi.Elapsed += TimerWifi_Elapsed;
+            timerWifi.Start();
+        }
 
+        private void TimerWifi_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                WifiConnection = "Wifi.png";
+            }
+            else
+            {
+                WifiConnection = "NoWifi.png";
+            }
         }
 
         string title;
@@ -41,6 +65,22 @@ namespace MusicSpotify.ViewModel
                 }
 
                 isBusy = value;
+                OnPropertyChanged();
+            }
+        }
+
+        string wifiConnection;
+        public string WifiConnection
+        {
+            get => wifiConnection;
+            set
+            {
+                if (wifiConnection == value)
+                {
+                    return;
+                }
+
+                wifiConnection = value;
                 OnPropertyChanged();
             }
         }

@@ -20,27 +20,27 @@ namespace MusicSpotify.Model
         [JsonProperty("Image")]
         public Uri Image { get; set; }
 
-        [JsonProperty("BackgroundImage")]
-        public Uri BackgroundImage { get; set; }
-
         [JsonProperty("AlbumId")]
         public string AlbumId { get; set; }
 
         [JsonProperty("AlbumSongs")]
         public List<SimpleTrack> AlbumSongs { get; set; }
 
+        [JsonProperty("AlbumArtist")]
+        public string AlbumArtist { get; set; }
+
         public static Album[] FromJson(string json) =>
             JsonConvert.DeserializeObject<Album[]>(json, Converter.Settings);
 
         public static Album FromSimpleAlbum(SimpleAlbum simpleAlbum, List<SimpleTrack> albumSongs)
         {
-            return new Album { 
-                Name = simpleAlbum.Name, 
-                ReleaseDate = simpleAlbum.ReleaseDate, 
-                Image = new Uri(simpleAlbum.Images[0].Url), 
-                BackgroundImage = new Uri(simpleAlbum.Images[1].Url), 
-                AlbumId = simpleAlbum.Id,  
-                AlbumSongs = albumSongs
+            return new Album {
+                Name = simpleAlbum.Name,
+                ReleaseDate = simpleAlbum.ReleaseDate,
+                Image = new Uri(simpleAlbum.Images[0].Url),
+                AlbumId = simpleAlbum.Id,
+                AlbumSongs = albumSongs,
+                AlbumArtist = simpleAlbum.Artists[0].Name
             };
         }
     }
