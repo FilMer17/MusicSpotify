@@ -14,6 +14,7 @@ namespace MusicSpotify
 
             MainPage = new NavigationPage(new MainPage());
             ((NavigationPage)Current.MainPage).BarBackgroundColor = Color.FromHex("1db954");
+            ((NavigationPage)Current.MainPage).BackgroundColor = Color.FromHex("1c1e21");
         }
 
         protected override void OnStart()

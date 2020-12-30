@@ -41,7 +41,7 @@
     </NavigationPage.TitleView>
 
     <Grid
-        ColumnSpacing="5" RowSpacing="0" BackgroundColor="White">
+        ColumnSpacing="5" RowSpacing="0" BackgroundColor="{StaticResource Primary}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -52,6 +52,7 @@
         </Grid.ColumnDefinitions>
 
         <ListView
+            
             ItemsSource="{Binding Albums}"
             Grid.Row="1"
             Grid.ColumnSpan="2"
@@ -63,8 +64,8 @@
                     <ViewCell>
                         <Frame
                             InputTransparent="True"
-                            Margin="10,5" Padding="0"
-                            BackgroundColor="White" CornerRadius="10"
+                            Margin="10,5" Padding="0" BorderColor="{StaticResource Secondary}"
+                            BackgroundColor="{StaticResource Primary}" CornerRadius="10"
                             HeightRequest="125" IsClippedToBounds="True"
                             Visual="Material">
                             <Grid Padding="0" ColumnSpacing="10">
@@ -74,14 +75,15 @@
                                 </Grid.ColumnDefinitions>
                                 <Frame 
                                     InputTransparent="True" Padding="0" CornerRadius="10"
-                                    IsClippedToBounds="True" BackgroundColor="White">
-                                    <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                    HasShadow="False" IsClippedToBounds="True"
+                                    BackgroundColor="{StaticResource Primary}" >
+                                    <Image Aspect="AspectFit" Source="{Binding Image}" />
                                 </Frame>
                                 <StackLayout
                                     Grid.Column="1" Padding="10"
                                     VerticalOptions="Center">
-                                    <Label FontSize="Large" Text="{Binding Name}" />
-                                    <Label FontSize="Medium" Text="{Binding ReleaseDate}" />
+                                    <Label FontSize="Large" Text="{Binding Name}" TextColor="White" />
+                                    <Label FontSize="Medium" Text="{Binding ReleaseDate}" TextColor="White" />
                                 </StackLayout>
                             </Grid>
                         </Frame>
@@ -98,6 +100,9 @@
             Placeholder="Napiš umělce"/>-->
 
         <Picker 
+            FontAttributes="Bold"
+            TextColor="White"
+            TitleColor="Gray"
             Title="Vyber umělce"
             Grid.Row="0"
             Grid.Column="0"

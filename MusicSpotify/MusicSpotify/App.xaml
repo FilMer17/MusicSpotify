@@ -4,10 +4,14 @@
              x:Class="MusicSpotify.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Color x:Key="Primary">#1c1e21</Color>
+            <Color x:Key="Secondary">#1db954</Color>
             <Style x:Key="AppButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="White" />
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="TextColor" Value="{StaticResource Secondary}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BorderColor" Value="{StaticResource Secondary}" />
                 <Setter Property="BorderWidth" Value="2" />
                 <Setter Property="CornerRadius" Value="10" />
             </Style>

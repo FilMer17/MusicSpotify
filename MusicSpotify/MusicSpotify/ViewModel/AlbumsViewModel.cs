@@ -10,18 +10,13 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 
 using MusicSpotify.Model;
-using MusicSpotify.Service;
 
 using SpotifyAPI.Web;
-using SpotifyAPI.Web.Auth;
 
 namespace MusicSpotify.ViewModel
 {
     public class AlbumsViewModel : BaseViewModel
     {
-        //HttpClient httpClient;
-        //HttpClient Client => httpClient ?? (httpClient = new HttpClient());
-
         public ObservableCollection<Album> Albums { get; }
         public Dictionary<string, string> Authors { get; }
         public List<string> AuthorsNames { get; }
@@ -34,15 +29,19 @@ namespace MusicSpotify.ViewModel
         public AlbumsViewModel()
         {
             Title = "Music with Spotify";
-            AuthorSelected = "Kygo";
             Albums = new ObservableCollection<Album>();
             Authors = new Dictionary<string, string>
             {
                 { "Kygo", "23fqKkggKUBHNkbKtXEls4" },
                 { "Ed Sheeran", "6eUKZXaKkcviH0Ku9w2n3V" },
-                { "Tylor Swift", "06HL4z0CvFAxyc27GXpf02" }
+                { "Tylor Swift", "06HL4z0CvFAxyc27GXpf02" },
+                { "David Guetta", "1Cs0zKBU1kc0i8ypK3B9ai" },
+                { "Ludovico Einaudi", "2uFUBdaVGtyMqckSeCl0Qj" },
+                { "Charlie Puth", "6VuMaDnrHyPL1p4EHjYLi7" },
+                { "Sia", "5WUlDfRSoLAfcVSX1WnrxN" }
             };
             AuthorsNames = Authors.Keys.ToList();
+            AuthorSelected = AuthorsNames[0];
             GetAlbumsCommand = new Command(async () => await GetAlbumsAsync());
         }
 
