@@ -14,7 +14,6 @@ namespace MusicSpotify.View
         public DetailPage()
         {
             InitializeComponent();
-            //((NavigationPage)Application.Current.MainPage).BackgroundColor = Color.Black;
         }
 
         public DetailPage(Album album)

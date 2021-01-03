@@ -52,7 +52,6 @@
         </Grid.ColumnDefinitions>
 
         <ListView
-            
             ItemsSource="{Binding Albums}"
             Grid.Row="1"
             Grid.ColumnSpan="2"
@@ -92,13 +91,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <!--<Entry 
-            Grid.Row="0"
-            Grid.Column="0"
-            HorizontalOptions="FillAndExpand"
-            Margin="7"
-            Placeholder="Napiš umělce"/>-->
-
         <Picker 
             FontAttributes="Bold"
             TextColor="White"
@@ -120,7 +112,5 @@
             Text="Vyhledat"
             IsEnabled="{Binding IsNotBusy}"
             Command="{Binding GetAlbumsCommand}"/>
-
     </Grid>
-        
 </ContentPage>

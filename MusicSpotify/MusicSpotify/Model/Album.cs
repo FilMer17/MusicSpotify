@@ -16,7 +16,7 @@ namespace MusicSpotify.Model
 
         [JsonProperty("ReleaseDate")]
         public string ReleaseDate { get; set; }
-        
+
         [JsonProperty("Image")]
         public Uri Image { get; set; }
 
@@ -34,7 +34,8 @@ namespace MusicSpotify.Model
 
         public static Album FromSimpleAlbum(SimpleAlbum simpleAlbum, List<SimpleTrack> albumSongs)
         {
-            return new Album {
+            return new Album
+            {
                 Name = simpleAlbum.Name,
                 ReleaseDate = simpleAlbum.ReleaseDate,
                 Image = new Uri(simpleAlbum.Images[0].Url),
@@ -47,7 +48,7 @@ namespace MusicSpotify.Model
 
     public static class Serialize
     {
-        public static string ToJson(this Album[] self) => 
+        public static string ToJson(this Album[] self) =>
             JsonConvert.SerializeObject(self, Converter.Settings);
     }
 

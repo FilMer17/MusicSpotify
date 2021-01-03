@@ -16,24 +16,18 @@
         <viewmodel:AlbumDetailViewModel />
     </d:ContentPage.BindingContext>
 
-    <!--<ScrollView>-->
-        <StackLayout>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="125" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="125" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-                <!--<BoxView
-                    Grid.ColumnSpan="3"
-                    BackgroundColor="Black"
-                    HeightRequest="100"
-                    HorizontalOptions="FillAndExpand" />-->
             <Frame
                 InputTransparent="True" Padding="0" CornerRadius="0"
                 IsClippedToBounds="True" BackgroundColor="White"
@@ -46,93 +40,80 @@
                     Grid.RowSpan="2"
                     Grid.Column="1"
                     Margin="0, 50, 0, 0">
-                    <Frame
-                        InputTransparent="True" Padding="0" CornerRadius="10"
-                        IsClippedToBounds="True" BackgroundColor="White"
-                        HorizontalOptions="Center">
-                        <Image
-                            Aspect="AspectFill"
-                            HeightRequest="150"
-                            WidthRequest="150"
-                            Source="{Binding Album.Image}"
-                            VerticalOptions="Center" />
-                    </Frame>
-                </StackLayout>
-
-                <Label
-                    Grid.Row="1"
-                    Margin="10"
-                    FontSize="Small"
-                    TextColor="White"
-                    HorizontalOptions="Center"
-                    Text="{Binding Album.AlbumArtist}" />
-                
-                <Label
-                    Grid.Row="1"
-                    TextColor="White"
-                    Grid.Column="2"
-                    Margin="10"
-                    FontSize="Small"
-                    HorizontalOptions="Center"
-                    Text="{Binding Album.ReleaseDate}" />
-
-            </Grid>
+                <Frame
+                    InputTransparent="True" Padding="0" CornerRadius="10"
+                    IsClippedToBounds="True" BackgroundColor="White"
+                    HorizontalOptions="Center">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="150"
+                        WidthRequest="150"
+                        Source="{Binding Album.Image}"
+                        VerticalOptions="Center" />
+                </Frame>
+            </StackLayout>
 
             <Label
+                Grid.Row="1"
+                Margin="10"
+                FontSize="Small"
                 TextColor="White"
-                FontAttributes="Bold"
-                FontSize="Title"
                 HorizontalOptions="Center"
-                Margin="10, 0, 10, 0"
-                Text="{Binding Album.Name}" />
+                Text="{Binding Album.AlbumArtist}" />
 
-            <BoxView HeightRequest="3" Color="{StaticResource Secondary}" />
+            <Label
+                Grid.Row="1"
+                TextColor="White"
+                Grid.Column="2"
+                Margin="10"
+                FontSize="Small"
+                HorizontalOptions="Center"
+                Text="{Binding Album.ReleaseDate}" />
+        </Grid>
 
-            <ListView
+        <Label
+            TextColor="White"
+            FontAttributes="Bold"
+            FontSize="Title"
+            HorizontalOptions="Center"
+            Margin="10, 0, 10, 0"
+            Text="{Binding Album.Name}" />
+
+        <BoxView HeightRequest="3" Color="{StaticResource Secondary}" />
+
+        <ListView
                 SelectionMode="None"
                 ItemsSource="{Binding Album.AlbumSongs}"
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
                 SeparatorVisibility="None"
                 HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="spotify:SimpleTrack">
-                        <ViewCell>
-                            <!--<Frame
-                            InputTransparent="True"
-                            Margin="10" Padding="0"
-                            BackgroundColor="{StaticResource Primary}" CornerRadius="10"
-                            HeightRequest="60" IsClippedToBounds="True" BorderColor="{StaticResource Secondary}"
-                            Visual="Material">-->
-                                <Grid Padding="10" ColumnSpacing="10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="75" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <!--<Frame 
-                                    InputTransparent="True" Padding="0" CornerRadius="10"
-                                    IsClippedToBounds="True" BackgroundColor="White">
-                                        <Image Aspect="AspectFill" Source="{Binding Image}" />
-                                    </Frame>-->
-                                    <!--<StackLayout
-                                        Grid.Column="1" Padding="10"
-                                        VerticalOptions="Center">-->
-                                        <Label Grid.Column="0" VerticalOptions="Center" HorizontalTextAlignment="Center"
-                                               FontSize="Medium" Text="{Binding TrackNumber}" TextColor="White" />
-                                        <BoxView Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="1" Color="{StaticResource Secondary}"  />
-                                        <Label Grid.Column="1" VerticalOptions="Center" FontSize="Medium" 
-                                               Text="{Binding Name}" TextColor="White" />
-                                    <!--</StackLayout>-->
-                                </Grid>
-                            <!--</Frame>-->
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    <!--</ScrollView>-->
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="spotify:SimpleTrack">
+                    <ViewCell>
+                        <Grid Padding="10" ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Label 
+                                Grid.Column="0" VerticalOptions="Center" HorizontalTextAlignment="Center"
+                                FontSize="Medium" Text="{Binding TrackNumber}" TextColor="White" />
+                            
+                            <BoxView Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="1" Color="{StaticResource Secondary}"  />
+                            
+                            <Label
+                                Grid.Column="1" VerticalOptions="Center" FontSize="Medium" 
+                                Text="{Binding Name}" TextColor="White" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
